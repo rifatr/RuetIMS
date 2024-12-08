@@ -1,16 +1,50 @@
 <?php
+// Sanitize and validate input
 $labDepartment = isset($_GET['department']) ? htmlspecialchars($_GET['department']) : "Unknown Department";
 
 // Connect to the database
-require 'partials/_dbconnect.php';
-$sql_dept = "SELECT * FROM `departments` WHERE `FullName` = '$labDepartment'";
-$departmentData = mysqli_fetch_assoc(mysqli_query($conn, $sql_dept));
+require 'partials/_dbConnector.php';
 
-$sql_labs = "SELECT * FROM `labs` WHERE `department_id` = '" . $department['department_id'] . "'";
-$result_labs = mysqli_query($conn, $sql_labs);
-$labs = mysqli_fetch_all($result_labs, MYSQLI_ASSOC);
+try {
+    // Check if department exists
+    $sql_dept = "SELECT * FROM `departments` WHERE `FullName` = ?";
+    $stmt_dept = $conn->prepare($sql_dept);
 
+    if (!$stmt_dept) {
+        throw new Exception("Error preparing statement: " . $conn->error);
+    }
+
+    // Bind parameters
+    $stmt_dept->bind_param("s", $labDepartment); // 's' for string
+    $stmt_dept->execute();
+    $result_dept = $stmt_dept->get_result();
+    $departmentData = $result_dept->fetch_assoc();
+
+    if ($departmentData) {
+        $department_id = $departmentData['Id'];
+
+        // Fetch labs by department ID
+        $sql_labs = "SELECT * FROM `labs` WHERE `DeptId` = ?";
+        $stmt_labs = $conn->prepare($sql_labs);
+
+        if (!$stmt_labs) {
+            throw new Exception("Error preparing statement: " . $conn->error);
+        }
+
+        // Bind department ID parameter
+        $stmt_labs->bind_param("i", $department_id); // 'i' for integer
+        $stmt_labs->execute();
+        $result_labs = $stmt_labs->get_result();
+        $labs = $result_labs->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $labs = []; // No department found
+    }
+} catch (Exception $e) {
+    die("Error: " . $e->getMessage());
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +104,9 @@ $labs = mysqli_fetch_all($result_labs, MYSQLI_ASSOC);
                     <div class="card shadow">
                         <div class="card-body text-center">
                             <h5 class="card-title
-                            "><?php echo $lab['name']; ?></h5>
-                            <p class="card-text"><?php echo $lab['description']; ?></p>
-                            <a href="lab.php?lab_id=<?php echo $lab['lab_id']; ?>" class="btn btn-primary">View Lab</a>
+                            "><?php echo $lab['Name']; ?></h5>
+                            <p class="card-text">Room No <?php echo $lab['RoomNo']; ?></p>
+                            <a href="equipments.php?room_no=<?php echo $lab['RoomNo']; ?>" class="btn btn-primary">View Lab</a>
                         </div>
                     </div>
                 </div>
