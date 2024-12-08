@@ -12,8 +12,8 @@ $departments = [
     "Chemical Engineering",
     "Glass and Ceramic Engineering",
     "Civil Engineering",
-    "Urban and Regional Planning",
     "Building Engineering and Construction Management",
+    "Urban and Regional Planning",
     "Architecture"
 ];
 ?>
