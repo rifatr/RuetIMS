@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         if ($isSignup) {
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> Your account has been created successfully! Click <a href="index.php">here</a> to login.
+            <strong>Success!</strong> Your account has been created successfully! Click <a href="login.php">here</a> to login.
             </button>
         </div>';
         } else {
