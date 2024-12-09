@@ -12,7 +12,6 @@ body {
 #main-content {
     flex: 1;
     padding-bottom: 200px;
-    margin-top: 500px;
 }
 
 footer {
@@ -53,5 +52,17 @@ header nav ul {
 
 header nav ul li {
     margin: 0 10px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #e0e0e0;
+}
+
+.hero h1 {
+    font-size: 28px;
+    color: #002147;
 }
 
