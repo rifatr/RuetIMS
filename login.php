@@ -1,11 +1,11 @@
 <?php
+$showAlert = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'partials/_dbConnector.php';
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $showAlert = false;
 
     $sql = "SELECT `password` FROM `users` WHERE `username` = '$username'";
     $result = mysqli_query($conn, $sql);

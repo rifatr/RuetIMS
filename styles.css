@@ -6,12 +6,12 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 200vh;
+    min-height: 100vh;
 }
 
 #main-content {
     flex: 1;
-    padding-bottom: 200px;
+    padding-bottom: 20px;
 }
 
 footer {
@@ -66,3 +66,14 @@ header nav ul li {
     color: #002147;
 }
 
+/* Department Grid */
+.departments {
+    padding: 20px;
+    text-align: center;
+}
+
+.departments h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #002147;
+}

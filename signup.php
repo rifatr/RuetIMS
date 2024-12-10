@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO `users` (`FullName`, `Roll`, `Email`, `username`, `password`) VALUES ('$full_name', '$roll_number', '$email', '$username', '$password')";
     $result = mysqli_query($conn, $sql);
 
-    if($result) {
+    if ($result) {
         $isSignup = true;
     }
 }
@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         body {
             height: 100vh;
-            background-color: white; /*#002b77;*/
+            background-color: white;
+            /*#002b77;*/
             display: flex;
             justify-content: center;
             align-items: center;
@@ -106,17 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         <?php
         if ($isSignup) {
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> Your account has been created successfully! Click <a href="login.php">here</a> to login.
-            </button>
-        </div>';
-        } else {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error!</strong> Your account could not be created due to an error: '. mysqli_error($conn) .'
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-        </div>';
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Your account has been created successfully! Click <a href="login.php">here</a> to login.
+                </button>
+            </div>
+        <?php
         }
         ?>
     </div>
