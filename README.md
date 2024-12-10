@@ -1,5 +1,16 @@
 # RuetIMS
 
+### Departments Table Creation Query
+```sql
+CREATE TABLE `rims`.`labs`(
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `FullName` VARCHAR(100) NOT NULL,
+    `ShortName` VARCHAR(50) NOT NULL,
+    `Faculty` INT(11) NOT NULL,
+    PRIMARY KEY(`Id`)
+) ENGINE = InnoDB;
+```
+
 ### Departments Table Data Insertion Query
 ```sql
 INSERT INTO `departments`(
@@ -108,4 +119,17 @@ CREATE TABLE `rims`.`equipments`(
 ```sql
 INSERT INTO `equipments`(`Id`, `Name`, `RoomNo`, `Condition`)
 VALUES(NULL, 'AC', '101', '1'),(NULL, 'AC', '10', '1'),(NULL, 'Fan', '101', '1'),(NULL, 'Fan', '101', '1'),(NULL, 'Light', '101', '1'),(NULL, 'LED TV', '207', '1'),(NULL, 'Laptop', '207', '0'),(NULL, 'Laptop', '207', '1'),(NULL, 'LED TV', '205', '0'),(NULL, 'Table', '203', '0')
+```
+
+
+### Rooms Table Creation Query
+```sql
+CREATE TABLE `rims`.`rooms`(
+    `RoomNo` VARCHAR(255) NOT NULL,
+    `RoomName` VARCHAR(255) NOT NULL,
+    `RoomType` VARCHAR(255) NOT NULL,
+    `Capacity` INT(11) NOT NULL,
+    `Department` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`RoomNo`(255))
+) ENGINE = InnoDB;
 ```

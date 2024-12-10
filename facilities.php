@@ -75,9 +75,9 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                 <div class="col-md-6 mb-4">
                     <div class="card shadow">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Classrooms</h5>
+                            <h5 class="card-title">Class Rooms</h5>
                             <p>Modern classrooms equipped with advanced tools.</p>
-                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="class.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -87,9 +87,9 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                 <div class="col-md-6 mb-4">
                     <div class="card shadow">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Seminar Room</h5>
+                            <h5 class="card-title">Seminar Rooms</h5>
                             <p>Well-equipped seminar rooms for workshops and events.</p>
-                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="seminar.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -99,9 +99,9 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                 <div class="col-md-6 mb-4">
                     <div class="card shadow">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Teacher's Room</h5>
+                            <h5 class="card-title">Teacher's Rooms</h5>
                             <p>Comfortable spaces for teachers and academic meetings.</p>
-                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary disabled">
                                 View More
                             </a>
                         </div>
