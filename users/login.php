@@ -1,8 +1,10 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 $showAlert = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include 'partials/_dbConnector.php';
+    include '../partials/_dbConnector.php';
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -18,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
-            header("location: index.php");
+            header("location: ../index.php");
         }
     } else {
         $showAlert = true;
