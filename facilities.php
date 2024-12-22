@@ -10,38 +10,10 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facilities - <?php echo $department; ?></title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Page Styling (can move to external styles.css) */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        header {
-            background-color: #001f54;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-        }
-
-        button {
-            background-color: navy;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: darkblue;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
