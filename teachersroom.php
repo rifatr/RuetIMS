@@ -1,8 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 // Sanitize and validate input
-$labDepartment = isset($_GET['department']) ? htmlspecialchars($_GET['department']) : "Unknown Department";
+$teachersroomDepartment = isset($_GET['department']) ? htmlspecialchars($_GET['department']) : "Unknown Department";
 
 // Connect to the database
 require 'partials/_dbConnector.php';
@@ -17,27 +15,27 @@ try {
     }
 
     // Bind parameters
-    $stmt_dept->bind_param("s", $labDepartment); // 's' for string
+    $stmt_dept->bind_param("s", $teachersroomDepartment); // 's' for string
     $stmt_dept->execute();
     $result_dept = $stmt_dept->get_result();
     $departmentShortName = $result_dept->fetch_assoc();
 
     if ($departmentShortName) {
-        // Fetch labs by department
-        $sql_labs = "SELECT * FROM `rooms` WHERE `Department` = ? AND `RoomType` = 'lab'";
-        $stmt_labs = $conn->prepare($sql_labs);
+        // Fetch teachersrooms by department ID
+        $sql_teachersrooms = "SELECT * FROM `rooms` WHERE `Department` = ? AND `RoomType` = 'teachersroom'";
+        $stmt_teachersrooms = $conn->prepare($sql_teachersrooms);
 
-        if (!$stmt_labs) {
+        if (!$stmt_teachersrooms) {
             throw new Exception("Error preparing statement: " . $conn->error);
         }
 
         // Bind department ID parameter
-        $stmt_labs->bind_param("i", $departmentShortName['ShortName']); // 'i' for integer
-        $stmt_labs->execute();
-        $result_labs = $stmt_labs->get_result();
-        $labs = $result_labs->fetch_all(MYSQLI_ASSOC);
+        $stmt_teachersrooms->bind_param("i", $departmentShortName['ShortName']); // 'i' for integer
+        $stmt_teachersrooms->execute();
+        $result_teachersrooms = $stmt_teachersrooms->get_result();
+        $teachersrooms = $result_teachersrooms->fetch_all(MYSQLI_ASSOC);
     } else {
-        $labs = []; // No department found
+        $teachersrooms = []; // No department found
     }
 } catch (Exception $e) {
     die("Error: " . $e->getMessage());
@@ -52,13 +50,12 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labs - <?php echo $labDepartment; ?></title>
+    <title>Facilities - <?php echo $teachersroomDepartment; ?></title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Page Styling (can move to external styles.css) */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -93,20 +90,20 @@ try {
 
     <div class="container mt-5">
         <div class="text-center">
-            <h1>Labs of <?php echo $labDepartment; ?></h1>
+            <h1>Teacher's Rooms of <?php echo $teachersroomDepartment; ?></h1>
         </div>
     </div>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <?php foreach ($labs as $lab) : ?>
+            <?php foreach ($teachersrooms as $teachersroom) : ?>
                 <div class="col-md-4 mb-4">
                     <div class="card shadow">
                         <div class="card-body text-center">
                             <h5 class="card-title
-                            "><?php echo $lab['RoomName']; ?></h5>
-                            <p class="card-text">Room No: <?php echo $lab['RoomNo']; ?></p>
-                            <a href="equipments.php?room_no=<?php echo $lab['RoomNo']; ?>" class="btn btn-primary">View Lab</a>
+                            "><?php echo $teachersroom['RoomName']; ?></h5>
+                            <p class="card-text">Room No: <?php echo $teachersroom['RoomNo']; ?></p>
+                            <a href="equipments.php?room_no=<?php echo $teachersroom['RoomNo']; ?>" class="btn btn-primary">View Teacher's Room</a>
                         </div>
                     </div>
                 </div>

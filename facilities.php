@@ -61,7 +61,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Seminar Rooms</h5>
                             <p>Well-equipped seminar rooms for workshops and events.</p>
-                            <a href="seminar.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary disabled">
+                            <a href="seminar.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -73,7 +73,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Teacher's Rooms</h5>
                             <p>Comfortable spaces for teachers and academic meetings.</p>
-                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary disabled">
+                            <a href="teachersroom.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>

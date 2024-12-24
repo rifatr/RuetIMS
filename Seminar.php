@@ -7,7 +7,7 @@ require 'partials/_dbConnector.php';
 
 try {
     // Check if department exists
-    $sql_dept = "SELECT * FROM `departments` WHERE `FullName` = ?";
+    $sql_dept = "SELECT `ShortName` FROM `departments` WHERE `FullName` = ?";
     $stmt_dept = $conn->prepare($sql_dept);
 
     if (!$stmt_dept) {
@@ -18,13 +18,11 @@ try {
     $stmt_dept->bind_param("s", $seminarDepartment); // 's' for string
     $stmt_dept->execute();
     $result_dept = $stmt_dept->get_result();
-    $departmentData = $result_dept->fetch_assoc();
+    $departmentShortName = $result_dept->fetch_assoc();
 
-    if ($departmentData) {
-        $department_id = $departmentData['Id'];
-
+    if ($departmentShortName) {
         // Fetch seminars by department ID
-        $sql_seminars = "SELECT * FROM `seminars` WHERE `DeptId` = ?";
+        $sql_seminars = "SELECT * FROM `rooms` WHERE `Department` = ? AND `RoomType` = 'seminar'";
         $stmt_seminars = $conn->prepare($sql_seminars);
 
         if (!$stmt_seminars) {
@@ -32,7 +30,7 @@ try {
         }
 
         // Bind department ID parameter
-        $stmt_seminars->bind_param("i", $department_id); // 'i' for integer
+        $stmt_seminars->bind_param("i", $departmentShortName['ShortName']); // 'i' for integer
         $stmt_seminars->execute();
         $result_seminars = $stmt_seminars->get_result();
         $seminars = $result_seminars->fetch_all(MYSQLI_ASSOC);
@@ -92,7 +90,7 @@ try {
 
     <div class="container mt-5">
         <div class="text-center">
-            <h1>Seminars of <?php echo $classDepartment; ?></h1>
+            <h1>Seminars of <?php echo $seminarDepartment; ?></h1>
         </div>
     </div>
 
@@ -103,8 +101,8 @@ try {
                     <div class="card shadow">
                         <div class="card-body text-center">
                             <h5 class="card-title
-                            "><?php echo $seminar['Name']; ?></h5>
-                            <p class="card-text">Room No <?php echo $seminar['RoomNo']; ?></p>
+                            "><?php echo $seminar['RoomName']; ?></h5>
+                            <p class="card-text">Room No: <?php echo $seminar['RoomNo']; ?></p>
                             <a href="equipments.php?room_no=<?php echo $seminar['RoomNo']; ?>" class="btn btn-primary">View Seminar</a>
                         </div>
                     </div>

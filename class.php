@@ -7,7 +7,7 @@ require 'partials/_dbConnector.php';
 
 try {
     // Check if department exists
-    $sql_dept = "SELECT * FROM `departments` WHERE `FullName` = ?";
+    $sql_dept = "SELECT `ShortName` FROM `departments` WHERE `FullName` = ?";
     $stmt_dept = $conn->prepare($sql_dept);
 
     if (!$stmt_dept) {
@@ -18,13 +18,11 @@ try {
     $stmt_dept->bind_param("s", $classDepartment); // 's' for string
     $stmt_dept->execute();
     $result_dept = $stmt_dept->get_result();
-    $departmentData = $result_dept->fetch_assoc();
+    $departmentShortName = $result_dept->fetch_assoc();
 
-    if ($departmentData) {
-        $department_id = $departmentData['Id'];
-
-        // Fetch classes by department ID
-        $sql_classes = "SELECT * FROM `classes` WHERE `DeptId` = ?";
+    if ($departmentShortName) {
+        // Fetch classes by department
+        $sql_classes = "SELECT * FROM `rooms` WHERE `Department` = ? AND `RoomType` = 'class'";
         $stmt_classes = $conn->prepare($sql_classes);
 
         if (!$stmt_classes) {
@@ -32,7 +30,7 @@ try {
         }
 
         // Bind department ID parameter
-        $stmt_classes->bind_param("i", $department_id); // 'i' for integer
+        $stmt_classes->bind_param("i", $departmentShortName['ShortName']); // 'i' for integer
         $stmt_classes->execute();
         $result_classes = $stmt_classes->get_result();
         $classes = $result_classes->fetch_all(MYSQLI_ASSOC);
@@ -104,8 +102,7 @@ try {
                     <div class="card shadow">
                         <div class="card-body text-center">
                             <h5 class="card-title
-                            "><?php echo $class['Name']; ?></h5>
-                            <p class="card-text">Room No <?php echo $class['RoomNo']; ?></p>
+                            "><?php echo $class['RoomName']; ?></h5>
                             <a href="equipments.php?room_no=<?php echo $class['RoomNo']; ?>" class="btn btn-primary">View Class</a>
                         </div>
                     </div>
