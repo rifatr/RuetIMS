@@ -6,6 +6,34 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     exit;
 }
 
+require '_dbConnector.php';
+
+// Sanitize and get the username from the session
+$loggedinUsername = $_SESSION['username'];
+$hasAccess = false;
+
+// Prepare a statement to fetch access data
+$stmt = $conn->prepare("SELECT CanUpdateData FROM `users` WHERE `username` = ?");
+if ($stmt === false) {
+    die("Prepare failed: " . $conn->error);
+}
+
+// Bind the session username to the query
+$stmt->bind_param("s", $loggedinUsername);
+
+// Execute the query
+$stmt->execute();
+
+// Get the result
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    // Fetch the row
+    $row = $result->fetch_assoc();
+
+    $hasAccess = $row['CanUpdateData'];
+}
+
 // List of departments
 $departments = [
     "Electrical and Electronic Engineering",
@@ -79,12 +107,18 @@ $departments = [
                         ?>
                     </ul>
                 </li>
+                <?php
+                if ($hasAccess)
+                    echo '<li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">Update Data</a>
+                        </li>';
+                ?>
             </ul>
             <!-- Profile Dropdown -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php echo htmlspecialchars($_SESSION['username']); ?>
+                        <?php echo htmlspecialchars($loggedinUsername); ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                         <li><a class="dropdown-item" href="profile.php">View Profile</a></li>

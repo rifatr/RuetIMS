@@ -37,7 +37,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Lab</h5>
                             <p>Explore state-of-the-art labs for all departments.</p>
-                            <a href="lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="rooms/lab.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -49,7 +49,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Class Rooms</h5>
                             <p>Modern classrooms equipped with advanced tools.</p>
-                            <a href="class.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="rooms/class.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -61,7 +61,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Seminar Rooms</h5>
                             <p>Well-equipped seminar rooms for workshops and events.</p>
-                            <a href="seminar.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="rooms/seminar.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
@@ -73,7 +73,7 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
                         <div class="card-body text-center">
                             <h5 class="card-title">Teacher's Rooms</h5>
                             <p>Comfortable spaces for teachers and academic meetings.</p>
-                            <a href="teachersroom.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
+                            <a href="rooms/teachersroom.php?department=<?php echo urlencode($department); ?>" class="btn btn-primary">
                                 View More
                             </a>
                         </div>
