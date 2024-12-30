@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 $labDepartment = isset($_GET['department']) ? htmlspecialchars($_GET['department']) : "Unknown Department";
 
 // Connect to the database
-require 'partials/_dbConnector.php';
+require '../partials/_dbConnector.php';
 
 try {
     // Check if department exists
@@ -89,7 +89,7 @@ try {
 
 <body>
     <!-- Navigation Bar -->
-    <?php require 'partials/_navBar.php' ?>
+    <?php require '../partials/_navBar.php' ?>
 
     <div class="container mt-5">
         <div class="text-center">
@@ -106,7 +106,7 @@ try {
                             <h5 class="card-title
                             "><?php echo $lab['RoomName']; ?></h5>
                             <p class="card-text">Room No: <?php echo $lab['RoomNo']; ?></p>
-                            <a href="equipments.php?room_no=<?php echo $lab['RoomNo']; ?>" class="btn btn-primary">View Lab</a>
+                            <a href="../equipments.php?room_no=<?php echo $lab['RoomNo']; ?>" class="btn btn-primary">View Lab</a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Footer -->
-    <?php require 'partials/_footer.php' ?>
+    <?php require '../partials/_footer.php' ?>
 
 </body>
 

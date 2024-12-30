@@ -1,8 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $isSignup = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include "partials/_dbConnector.php";
+    include "../partials/_dbConnector.php";
 
     // Retrieve data from the POST request
     $full_name   = $_POST['full_name'];
@@ -109,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($isSignup) {
         ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Your account has been created successfully! Click <a href="users/login.php">here</a> to login.
+                <strong>Success!</strong> Your account has been created successfully! Click <a href="login.php">here</a> to login.
                 </button>
             </div>
         <?php
