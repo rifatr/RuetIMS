@@ -110,7 +110,7 @@ $departments = [
                 <?php
                 if ($hasAccess)
                     echo '<li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Update Data</a>
+                        <a class="nav-link active" aria-current="page" href="addEquipment.php">Add Equipment</a>
                         </li>';
                 ?>
             </ul>
