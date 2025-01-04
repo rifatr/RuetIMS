@@ -75,43 +75,34 @@ $departments = [
                     </a>
                     <ul class="dropdown-menu">
                         <?php
-                        for ($x = 0; $x <= 3; $x++) {
-                            $dept = $departments[$x];
-                        ?>
-                            <li><a class="dropdown-item" href="facilities.php?department=<?php echo urlencode($dept); ?>"><?php echo $dept; ?></a></li>
-                        <?php
-                        }
-                        ?>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <?php
-                        for ($x = 4; $x <= 9; $x++) {
-                            $dept = $departments[$x];
-                        ?>
-                            <li><a class="dropdown-item" href="facilities.php?department=<?php echo urlencode($dept); ?>"><?php echo $dept; ?></a></li>
-                        <?php
-                        }
-                        ?>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <?php
-                        for ($x = 10; $x <= 13; $x++) {
-                            $dept = $departments[$x];
-                        ?>
-                            <li><a class="dropdown-item" href="facilities.php?department=<?php echo urlencode($dept); ?>"><?php echo $dept; ?></a></li>
-                        <?php
+                        $faculty_range = [[0, 3], [4, 9], [10, 13]];
+                        foreach ($faculty_range as $range) {
+                            for ($i = $range[0]; $i <= $range[1]; $i++) {
+                                $dept = $departments[$i];
+                                echo '<li><a class="dropdown-item" href="facilities.php?department=' . urlencode($dept) . '">' . $dept . '</a></li>';
+                            }
+                            if ($range[1] != 13)
+                                echo '<li><hr class="dropdown-divider"></li>';
                         }
                         ?>
                     </ul>
                 </li>
+
                 <?php
-                if ($hasAccess)
-                    echo '<li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="addEquipment.php">Add Equipment</a>
-                        </li>';
+                if ($hasAccess) {
+                ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Update Data
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=update">Update Equipment</a></li>
+                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=remove">Delete Equipment</a></li>
+                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=add">Add Equipment</a></li>
+                        </ul>
+                    </li>
+                <?php
+                }
                 ?>
             </ul>
             <!-- Profile Dropdown -->
