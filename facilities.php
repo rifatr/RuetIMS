@@ -31,7 +31,6 @@ $department = isset($_GET['department']) ? htmlspecialchars($_GET['department'])
     <main>
         <div class="container mt-5">
             <div class="row">
-
                 <div class="col-md-6 mb-4">
                     <div class="card shadow">
                         <div class="card-body text-center">

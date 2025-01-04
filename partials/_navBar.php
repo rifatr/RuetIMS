@@ -51,6 +51,11 @@ $departments = [
     "Urban and Regional Planning",
     "Architecture"
 ];
+$departmentsShortName = [
+    "EEE", "CSE", "ECE", "ETE",
+    "ME", "IPE", "MTE", "MSE", "ChE", "GCE",
+    "CE", "BECM", "URP", "ARCH"
+];
 ?>
 
 
@@ -67,7 +72,7 @@ $departments = [
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="http://localhost/ruetIMS/">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,7 +84,7 @@ $departments = [
                         foreach ($faculty_range as $range) {
                             for ($i = $range[0]; $i <= $range[1]; $i++) {
                                 $dept = $departments[$i];
-                                echo '<li><a class="dropdown-item" href="facilities.php?department=' . urlencode($dept) . '">' . $dept . '</a></li>';
+                                echo '<li><a class="dropdown-item" href="http://localhost/ruetIMS/facilities.php?department=' . urlencode($dept) . '">' . $dept . '</a></li>';
                             }
                             if ($range[1] != 13)
                                 echo '<li><hr class="dropdown-divider"></li>';
@@ -96,9 +101,9 @@ $departments = [
                             Update Data
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=update">Update Equipment</a></li>
-                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=remove">Delete Equipment</a></li>
-                            <li><a class="dropdown-item" href="update/updateEquipment.php?type=add">Add Equipment</a></li>
+                            <li><a class="dropdown-item" href="http://localhost/ruetIMS/update/updateEquipment.php?type=update">Update Equipment</a></li>
+                            <li><a class="dropdown-item" href="http://localhost/ruetIMS/update/updateEquipment.php?type=remove">Delete Equipment</a></li>
+                            <li><a class="dropdown-item" href="http://localhost/ruetIMS/update/updateEquipment.php?type=add">Add Equipment</a></li>
                         </ul>
                     </li>
                 <?php
